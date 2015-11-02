@@ -1,5 +1,8 @@
 // morse.js
 // ========
+
+var _ = require("lodash");
+
 module.exports = {
     toMorse: toMorse    
 };
@@ -46,8 +49,12 @@ function toMorse(dot, dash, interElementGap, shortGap, mediumGap, str) {
         " ":[mediumGap]
     };
 
-    return str
-       .map((val) => { return letterLookup[val.toLowerCase()]; })
-       .reduce((pval, cval) => { return pval.concat(cval); }, []);
+    return _(str)
+       .map(function (val) { console.log(val); return val })
+       .map(function (val) { return letterLookup[val.toLowerCase()]; })
+       .map(function (val) { console.log(val); return val })
+       .flattenDeep()
+       .map(function (val) { console.log(val); return val })
+       .value();
 }
 
